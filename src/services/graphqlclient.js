@@ -5,17 +5,29 @@ const util = require('util');
 require("dotenv").config();
 
 // Create client with Authorization header
+const API_KEY = process.env.API_KEY;
+    if (!API_KEY) {
+        logger.error("No API_KEY found in environment variables");
+        throw new Error("API_KEY is required");
+    }
 const client = new GraphQLClient(process.env.DOMA_SUBGRAPH_URL, {
   headers: {
-    'api-key': process.env.API_KEY
+    'api-key': API_KEY,
+    "content-type": "application/json; charset=utf-8"
   }
 });
 
 async function querySubgraph(query, variables = {}) {
   try {
+      // **Log request headers**
+    logger.info("GraphQL request headers:", JSON.stringify(client.requestConfig.headers, null, 2));
     return await client.request(query, variables);
+    
   } catch (err) {
     logger.error("Subgraph query failed", err.response?.errors || err.message || err);
+     if (response.errors) {
+    logger.error("GraphQL Execution Errors:", JSON.stringify(response.errors, null, 2));
+    }
     throw err;
   }
 }

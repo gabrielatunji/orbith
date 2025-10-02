@@ -21,11 +21,11 @@ const fetchAllDomains = async () => {
       }
     }
   }
-}`;
-
+      }
+    `;
 const response = await querySubgraph(
     query, 
-    { fractionalized: true, active: true, skip: 0, take: 24, sortOrder: 'DESC' }
+    { fractionalized: true, active: true, skip: 0, take: 1, sortOrder: 'DESC' }
 );
 
 console.log("Fetched new domains:", 
@@ -33,7 +33,6 @@ console.log("Fetched new domains:",
 return JSON.stringify(response?.names?.items || []);
 } catch (err) {
     logger.error("Error fetching new domains", err);
-
   }
 };
 
@@ -90,10 +89,11 @@ console.log("Fetched specific domain:",
 return JSON.stringify(response?.name || {});
 } catch (err) {
     logger.error("Error fetching new domains", err);
-
   }
 };
 
-
-module.exports = { fetchAllDomains, fetchSpecificDomainName };
+module.exports = {
+  fetchAllDomains,
+  fetchSpecificDomainName
+};
 

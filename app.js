@@ -6,7 +6,7 @@ const inquiryRoutes = require('./src/routes/inquiryroutes');
 const logger = require('./src/utils/logger');
 const connectDB = require('./src/config/db');
 const { testClientConnection } = require('./src/services/graphqlclient');
-const {fetchSpecificDomainName} = require('./src/services/subgraphservice');
+const { fetchSpecificDomainName, fetchAllDomains} = require('./src/services/subgraphservice');
 
 const app = express();
 app.use(bodyParser.json());
@@ -22,14 +22,12 @@ let server;
 try {
   server = app.listen(4000, async () => {
     await connectDB();
-    // Call the test function and await its result
-    try {
-      await testClientConnection();
-      await fetchSpecificDomainName("verygoodfood.com");
-      logger.info('GraphQL client connection test completed');
-    } catch (error) {
-      logger.error('GraphQL client connection test failed:', error);
-    }
+    logger.info('Connected to database');
+
+    // Call the test functions
+    //testClientConnection();
+    fetchSpecificDomainName("verygoodfood.com");
+    fetchAllDomains();
     logger.info('App listening on port 4000');
   });
 
