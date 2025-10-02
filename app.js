@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const domainRoutes = require('./src/routes/domainroutes');
-const watchRoutes = require('./src/routes/watchroutes');
-const inquiryRoutes = require('./src/routes/inquiryroutes');
+// const domainRoutes = require('./src/routes/domainroutes');
+// const watchRoutes = require('./src/routes/watchroutes');
+// const inquiryRoutes = require('./src/routes/inquiryroutes');
 const logger = require('./src/utils/logger');
 const connectDB = require('./src/config/db');
 const { testClientConnection } = require('./src/services/graphqlclient');
@@ -11,10 +11,10 @@ const { fetchSpecificDomainName, fetchAllDomains} = require('./src/services/subg
 const app = express();
 app.use(bodyParser.json());
 
-// API routes
-app.use('/api/domains', domainRoutes);
-app.use('/api/watches', watchRoutes);
-app.use('/api/inquiries', inquiryRoutes);
+// // API routes
+// app.use('/api/domains', domainRoutes);
+// app.use('/api/watches', watchRoutes);
+// app.use('/api/inquiries', inquiryRoutes);
 
 app.get('/health', (req, res) => res.json({ ok: true }));
 
