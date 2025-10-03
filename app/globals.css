@@ -1,0 +1,49 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+* {
+  /* margin: 0; */
+  /* padding: 0; */
+  box-sizing: border-box;
+}
+
+@layer utilities {
+  /* Sidebar */
+  .sidebar {
+    @apply sticky left-0 top-0 flex h-screen md:w-32 xl:w-64 flex-col justify-between border-r border-[#2A2A2D] bg-transparent pt-6 max-md:hidden 2xl:w-[355px];
+  }
+
+  .sidebar-logo {
+    @apply 2xl:text-2xl text-[26px] font-bold max-xl:hidden;
+  }
+
+  .sidebar-link {
+    @apply flex gap-4 px-4 py-3 w-[90%] rounded-lg justify-center xl:justify-start;
+  }
+
+  .sidebar-label {
+    @apply font-semibold max-xl:hidden;
+  }
+
+  /* Navbar */
+  .navbar {
+    @apply h-16 sticky top-0 border-b border-[#2A2A2D] flex items-center bg-[#0D0D0D] justify-between px-4 py-8
+  }
+
+  /* Home */
+  .home {
+    @apply py-6 px-8
+  }
+}
+
+.test-border-1 {
+  border: 2px solid red;
+}
+
+.test-border-2 {
+  border: 2px solid white;
+}
+
+.test-border-3 {
+  border: 2px solid blue;
+}
