@@ -12,9 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.fetchFractionalDomains = exports.fetchNewListings = exports.fetchSpecificDomainName = exports.fetchLatestDomains = void 0;
+exports.fetchDomainTokenPrice = exports.fetchFractionalDomains = exports.fetchNewListings = exports.fetchSpecificDomainInfo = exports.fetchLatestDomains = void 0;
 const graphqlclient_1 = require("./graphqlclient");
 const logger_1 = __importDefault(require("../utils/logger"));
+const util_1 = __importDefault(require("util"));
 const fetchLatestDomains = () => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
     try {
@@ -36,16 +37,16 @@ const fetchLatestDomains = () => __awaiter(void 0, void 0, void 0, function* () 
       }
     `;
         const response = yield (0, graphqlclient_1.querySubgraph)(query, { fractionalized: true, active: true, skip: 0, take: 10, sortOrder: 'DESC' });
-        console.log("Fetched new domains:", JSON.stringify(((_a = response === null || response === void 0 ? void 0 : response.names) === null || _a === void 0 ? void 0 : _a.items) || []));
-        return JSON.stringify(((_b = response === null || response === void 0 ? void 0 : response.names) === null || _b === void 0 ? void 0 : _b.items) || []);
+        console.log("Fetched new domains:", util_1.default.inspect((_a = response === null || response === void 0 ? void 0 : response.names) === null || _a === void 0 ? void 0 : _a.items));
+        return util_1.default.inspect((_b = response === null || response === void 0 ? void 0 : response.names) === null || _b === void 0 ? void 0 : _b.items);
     }
     catch (err) {
         logger_1.default.error("Error fetching new domains", err);
-        return JSON.stringify([]); // Return empty array string on error
+        return util_1.default.inspect([]); // Return empty array string on error
     }
 });
 exports.fetchLatestDomains = fetchLatestDomains;
-const fetchSpecificDomainName = (domainName) => __awaiter(void 0, void 0, void 0, function* () {
+const fetchSpecificDomainInfo = (domainName) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const query = (0, graphqlclient_1.gql) `
       query Name($name: String!) {
@@ -90,15 +91,15 @@ const fetchSpecificDomainName = (domainName) => __awaiter(void 0, void 0, void 0
       }
     `;
         const response = yield (0, graphqlclient_1.querySubgraph)(query, { name: domainName });
-        console.log("Fetched specific domain:", JSON.stringify((response === null || response === void 0 ? void 0 : response.name) || {}));
-        return JSON.stringify((response === null || response === void 0 ? void 0 : response.name) || {});
+        console.log("Fetched specific domain:", util_1.default.inspect(response === null || response === void 0 ? void 0 : response.name));
+        return util_1.default.inspect(response === null || response === void 0 ? void 0 : response.name);
     }
     catch (err) {
         logger_1.default.error("Error fetching specific domain", err);
-        return JSON.stringify({}); // Return empty object string on error
+        return util_1.default.inspect({});
     }
 });
-exports.fetchSpecificDomainName = fetchSpecificDomainName;
+exports.fetchSpecificDomainInfo = fetchSpecificDomainInfo;
 const fetchNewListings = () => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
     try {
@@ -126,12 +127,12 @@ const fetchNewListings = () => __awaiter(void 0, void 0, void 0, function* () {
       }
     `;
         const response = yield (0, graphqlclient_1.querySubgraph)(query, { skip: 0, take: 5, createdSince: "2025-10-01T01:18:30.306Z" });
-        console.log("Fetched new listings:", JSON.stringify(((_a = response === null || response === void 0 ? void 0 : response.listings) === null || _a === void 0 ? void 0 : _a.items) || []));
-        return JSON.stringify(((_b = response === null || response === void 0 ? void 0 : response.listings) === null || _b === void 0 ? void 0 : _b.items) || []);
+        console.log("Fetched new listings:", util_1.default.inspect((_a = response === null || response === void 0 ? void 0 : response.listings) === null || _a === void 0 ? void 0 : _a.items));
+        return util_1.default.inspect((_b = response === null || response === void 0 ? void 0 : response.listings) === null || _b === void 0 ? void 0 : _b.items);
     }
     catch (err) {
         logger_1.default.error("Error fetching new listings", err);
-        return JSON.stringify([]); // Return empty array string on error
+        return util_1.default.inspect([]);
     }
 });
 exports.fetchNewListings = fetchNewListings;
@@ -161,12 +162,34 @@ const fetchFractionalDomains = () => __awaiter(void 0, void 0, void 0, function*
       }
     `;
         const response = yield (0, graphqlclient_1.querySubgraph)(query, { skip: 0, take: 5, status: "FRACTIONALIZED" });
-        console.log("Fetched fractional domains:", JSON.stringify(((_a = response === null || response === void 0 ? void 0 : response.fractionalTokens) === null || _a === void 0 ? void 0 : _a.items) || []));
-        return JSON.stringify(((_b = response === null || response === void 0 ? void 0 : response.fractionalTokens) === null || _b === void 0 ? void 0 : _b.items) || []);
+        console.log("Fetched fractional domains:", util_1.default.inspect((_a = response === null || response === void 0 ? void 0 : response.fractionalTokens) === null || _a === void 0 ? void 0 : _a.items));
+        return util_1.default.inspect((_b = response === null || response === void 0 ? void 0 : response.fractionalTokens) === null || _b === void 0 ? void 0 : _b.items);
     }
     catch (err) {
         logger_1.default.error("Error fetching fractional domains", err);
-        return JSON.stringify([]); // Return empty array string on error
+        return util_1.default.inspect([]);
     }
 });
 exports.fetchFractionalDomains = fetchFractionalDomains;
+const fetchDomainTokenPrice = (domainName) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a, _b, _c, _d;
+    try {
+        const query = (0, graphqlclient_1.gql) `
+      query Name($name: String!) {
+        name(name: $name) {
+          fractionalTokenInfo {
+            currentPrice
+          }
+        }
+      }
+    `;
+        const response = yield (0, graphqlclient_1.querySubgraph)(query, { name: domainName });
+        console.log(`${domainName} current token price:`, util_1.default.inspect((_b = (_a = response === null || response === void 0 ? void 0 : response.name) === null || _a === void 0 ? void 0 : _a.fractionalTokenInfo[0]) === null || _b === void 0 ? void 0 : _b.currentPrice));
+        return util_1.default.inspect((_d = (_c = response === null || response === void 0 ? void 0 : response.name) === null || _c === void 0 ? void 0 : _c.fractionalTokenInfo[0]) === null || _d === void 0 ? void 0 : _d.currentPrice) || 0;
+    }
+    catch (err) {
+        logger_1.default.error("Error fetching domain token price", err);
+        return 0;
+    }
+});
+exports.fetchDomainTokenPrice = fetchDomainTokenPrice;

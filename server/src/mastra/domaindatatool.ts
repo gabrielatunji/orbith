@@ -6,14 +6,14 @@ import { z } from "zod";
  * This includes original market metrics and new domain-specific value drivers.
  */
 const DomainDataSchema = z.object({
-  collectionName: z.string().describe("The name of the asset collection."),
-  floorPrice: z.number().describe("The current lowest price for the asset, in ETH."),
+  collectionName: z.string().describe("The domain name."),
+  tokenPrice: z.number().describe("The current price of a single token(fraction) of the domain name, in USD"),
   tradingVolume7Day: z.number().describe("The total trading volume in the last 7 days, in ETH."),
-  supply: z.number().describe("The total number of unique assets in the collection."),
+  supply: z.number().describe("The total number of unique assets in the domain."),
   
   // New metrics required for scoring
   tldType: z.enum(["Premium", "Standard", "Legacy"]).describe("The prestige type of the TLD (Top-Level Domain). 'Premium' is highly valued."),
-  domainAgeInYears: z.number().int().describe("The age of the domain/collection in years since mint/launch."),
+  domainAgeInYears: z.number().int().describe("The age of the domain in years since mint/launch."),
   googleTrendsInterest: z.number().int().min(0).max(100).describe("The current Google Trends score (0-100) for related keywords."),
   onChainMcap: z.number().describe("The total market capitalization of the collection, in USD."),
 
@@ -37,7 +37,7 @@ export const domainDataTool = createTool({
     // Mock data simulation for a high-value collection
     const mockData = {
       collectionName: context.collectionName,
-      floorPrice: 12.5,
+      tokenPrice: 12.5,
       tradingVolume7Day: 8500, // High volume
       supply: 10000,
       

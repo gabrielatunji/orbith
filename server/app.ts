@@ -4,8 +4,7 @@ import express from 'express';
 // import inquiryRoutes from './src/routes/inquiryroutes';
 import logger from './src/utils/logger';
 import connectDB from './src/config/db';
-import { testClientConnection } from './src/services/graphqlclient';
-import { fetchSpecificDomainName, fetchLatestDomains, fetchNewListings, fetchFractionalDomains} from './src/services/subgraphservice';
+import { fetchSpecificDomainInfo, fetchLatestDomains, fetchNewListings, fetchDomainTokenPrice, fetchFractionalDomains} from './src/services/subgraphservice';
 import { runRarityAnalysis } from './src/mastra/domainscorer';
 
 const app = express();
@@ -26,12 +25,12 @@ try {
     logger.info('Connected to database');
 
     // Call the test functions
-    //testClientConnection();
-    //fetchSpecificDomainName("collinsbuckfocused56.ai");
+    fetchSpecificDomainInfo("collinsbuckfocused56.ai");
     //fetchLatestDomains();
     //fetchNewListings();
-    //fetchFractionalDomains();
-    await runRarityAnalysis("aiwhispers.com"); // Await the rarity analysis
+    fetchFractionalDomains();
+    fetchDomainTokenPrice("software.ai");
+    //await runRarityAnalysis("aiwhispers.com"); // Await the rarity analysis
     logger.info('App listening on port 4000');
   });
 

@@ -18,7 +18,7 @@ const express_1 = __importDefault(require("express"));
 // import inquiryRoutes from './src/routes/inquiryroutes';
 const logger_1 = __importDefault(require("./src/utils/logger"));
 const db_1 = __importDefault(require("./src/config/db"));
-const domainscorer_1 = require("./src/mastra/domainscorer");
+const subgraphservice_1 = require("./src/services/subgraphservice");
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 // // API routes
@@ -32,12 +32,12 @@ try {
         yield (0, db_1.default)();
         logger_1.default.info('Connected to database');
         // Call the test functions
-        //testClientConnection();
-        //fetchSpecificDomainName("collinsbuckfocused56.ai");
+        (0, subgraphservice_1.fetchSpecificDomainInfo)("collinsbuckfocused56.ai");
         //fetchLatestDomains();
         //fetchNewListings();
-        //fetchFractionalDomains();
-        yield (0, domainscorer_1.runRarityAnalysis)("aiwhispers.com"); // Await the rarity analysis
+        (0, subgraphservice_1.fetchFractionalDomains)();
+        (0, subgraphservice_1.fetchDomainTokenPrice)("software.ai");
+        //await runRarityAnalysis("aiwhispers.com"); // Await the rarity analysis
         logger_1.default.info('App listening on port 4000');
     }));
     process.on('SIGINT', () => {
