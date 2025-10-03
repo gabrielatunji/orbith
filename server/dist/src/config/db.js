@@ -8,16 +8,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const mongoose = require('mongoose');
-require('dotenv').config();
-const logger = require('../utils/logger');
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = __importDefault(require("mongoose"));
+const logger_1 = __importDefault(require("../utils/logger"));
+const dotenv_1 = require("dotenv");
+(0, dotenv_1.configDotenv)();
 const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield mongoose.connect(process.env.MONGODB_URI);
-        logger.info('Database Connected');
+        yield mongoose_1.default.connect(process.env.MONGODB_URI); // Use the non-null assertion operator (!)
+        logger_1.default.info('Database Connected');
     }
     catch (error) {
-        logger.error('Database not Connected', error);
+        logger_1.default.error('Database not Connected', error);
     }
 });
-module.exports = connectDB;
+exports.default = connectDB;

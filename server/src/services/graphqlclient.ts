@@ -2,6 +2,7 @@ console.log("graphqlclient.ts loaded");
 import { GraphQLClient, gql as gqlTag, RequestDocument, Variables } from "graphql-request";
 import logger from "../utils/logger";
 import { configDotenv } from "dotenv";
+import util from "util";
 
 configDotenv(); 
 

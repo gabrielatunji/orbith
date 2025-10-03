@@ -4,7 +4,6 @@
 // const scoringService = require('../services/scoringService');
 // const pollService = require('../services/pollservice');
 // const logger = require('../utils/logger');
-Object.defineProperty(exports, "__esModule", { value: true });
 // const POLL_INTERVAL = Number(process.env.POLL_INTERVAL_SECONDS || 60);
 // async function runRefresh() {
 //   logger.info('Running refresh job: sync fractional domains');

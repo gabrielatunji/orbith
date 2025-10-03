@@ -19,6 +19,7 @@ console.log("graphqlclient.ts loaded");
 const graphql_request_1 = require("graphql-request");
 const logger_1 = __importDefault(require("../utils/logger"));
 const dotenv_1 = require("dotenv");
+const util_1 = __importDefault(require("util"));
 (0, dotenv_1.configDotenv)();
 // Create client with Authorization header
 const API_KEY = process.env.API_KEY;
@@ -78,7 +79,7 @@ function testClientConnection() {
         try {
             const variables = { name: "aiwhispers.com" };
             const data = yield querySubgraph(query, variables);
-            logger_1.default.info("GraphQL client connected and working:", util.inspect(data, { depth: null, colors: true }));
+            logger_1.default.info("GraphQL client connected and working:", util_1.default.inspect(data, { depth: null, colors: true }));
         }
         catch (err) {
             logger_1.default.error("GraphQL client connection test failed:", err);
