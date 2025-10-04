@@ -1,6 +1,11 @@
 import heroImage from "../assets/hero-image.png";
 
 export default function Hero() {
+
+  const handleClick = () => {
+    window.open("https://orbith-b8tw.onrender.com/", "_blank");
+  };
+  
   return (
     <section className="pt-32 pb-20 px-6">
       <div className="max-w-7xl mx-auto text-center">
@@ -14,7 +19,7 @@ export default function Hero() {
           <br />
           and negotiate directly with owners.
         </p>
-        <button className="bg-blue-700 text-white text-sm font-semibold py-4 px-6 rounded-lg shadow-md hover:bg-blue-800 hover:scale-105 transition duration-200">
+        <button onClick={handleClick} className="cursor-pointer bg-blue-700 text-white text-sm font-semibold py-4 px-6 rounded-lg shadow-md hover:bg-blue-800 hover:scale-105 transition duration-200">
           Get Started
         </button>
 
