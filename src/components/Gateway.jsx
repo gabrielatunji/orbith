@@ -55,7 +55,7 @@ export default function Gateway() {
                 Message owners directly inside Orbith. Negotiate and
                 <br /> propose offers without middlemen.
               </p>
-              <button className=" self-start bg-blue-700 text-white text-sm font-medium py-3 px-4 rounded-xl shadow-md hover:bg-blue-800 hover:scale-105 transition duration-200">
+              <button onClick={handleClick} className="cursor-pointer self-start bg-blue-700 text-white text-sm font-medium py-3 px-4 rounded-xl shadow-md hover:bg-blue-800 hover:scale-105 transition duration-200">
                 Get Started
               </button>
             </div>
@@ -71,7 +71,7 @@ export default function Gateway() {
                 All offers and transfers are executed safely on-chain,
                 <br /> ensuring transparent ownership.
               </p>
-              <button className=" self-start bg-blue-700 text-white text-sm font-medium py-3 px-4 rounded-xl shadow-md hover:bg-blue-800 hover:scale-105 transition duration-200">
+              <button onClick={handleClick} className="cursor-pointer self-start bg-blue-700 text-white text-sm font-medium py-3 px-4 rounded-xl shadow-md hover:bg-blue-800 hover:scale-105 transition duration-200">
                 Get Started
               </button>
             </div>
