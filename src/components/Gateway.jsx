@@ -3,6 +3,11 @@ import phone from "../assets/phone.png";
 import trade from "../assets/trade.png";
 
 export default function Gateway() {
+
+  const handleClick = () => {
+    window.open("https://orbith-b8tw.onrender.com/", "_blank");
+  };
+  
   return (
     <section className="py-20 px-6">
       <div className="max-w-7xl mx-auto">
@@ -27,7 +32,7 @@ export default function Gateway() {
                 Every domain is scored with clear metrics — liquidity,
                 <br /> holders, history, and more.
               </p>
-              <button className=" self-start bg-blue-700 text-white text-sm font-medium py-3 px-4 rounded-xl shadow-md hover:bg-blue-800 hover:scale-105 transition duration-200">
+              <button onClick={handleClick} className="cursor-pointer self-start bg-blue-700 text-white text-sm font-medium py-3 px-4 rounded-xl shadow-md hover:bg-blue-800 hover:scale-105 transition duration-200">
                 Get Started
               </button>
             </div>
