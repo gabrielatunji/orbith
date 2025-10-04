@@ -6,6 +6,10 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleClick = () => {
+    window.open("https://orbith-b8tw.onrender.com/", "_blank");
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -32,7 +36,7 @@ export default function Navbar() {
             <button className="px-6 py-4 border text-md border-gray-700 rounded-lg text-white hover:border-gray-500 transition-colors font-medium ">
               Connect Wallet
             </button>
-            <button className="px-6 py-4 text-md font-semibold bg-blue-700 hover:bg-blue-800 rounded-lg text-white transition-colors ">
+            <button onClick={handleClick} className="px-6 py-4 text-md font-semibold bg-blue-700 hover:bg-blue-800 rounded-lg text-white transition-colors ">
               Get Started
             </button>
           </div>
